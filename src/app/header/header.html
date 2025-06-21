@@ -1,0 +1,30 @@
+
+<header>
+    <nav class=main-nav>
+        <a class=main-nav__logo routerLink="/">
+            <img
+            class=main-nav__logoImg
+            ngSrc="/assets/argent-bank-logo.png"
+            alt="Argent Bank Logo"
+            width="200"
+            height="54"
+            priority
+            />
+            <h1 class="sr-only">Argent Bank</h1>
+        </a>
+        <div class=main-nav__link-containers>
+            <!-- only if connected -->
+            @if (isConnected) {
+                <a class=main-nav__item routerLink="/profile">
+                    <i class="fa fa-user-circle"></i>
+                    <!-- dynamic render of the userName -->
+                    {{userName}}
+                </a>
+            }
+            <!-- dynamic routing and content if the user is connected or not -->
+            <a class=main-nav__item routerLink={{getConnectionRedirection()}}>
+                {{getConnectionStatus()}}
+            </a>
+        </div>
+    </nav>
+</header>

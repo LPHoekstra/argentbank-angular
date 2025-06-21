@@ -1,0 +1,14 @@
+<main class="auth bg-dark">
+  <section class=auth__content>
+    <i class="auth__icon"></i>
+    <!-- dynamic render of title -->
+    <h1>{{this.title}}</h1>
+    <!-- render here the login or logout component -->
+    @if (isOnLoginPage()) {
+      <ab-login />
+      <a class=auth__link routerLink="/signup">Sign Up</a>
+    } @else {
+      <ab-logout />
+    }
+  </section>
+</main>
