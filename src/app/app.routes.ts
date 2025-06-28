@@ -8,6 +8,11 @@ export const routes: Routes = [
         title: "Login to ArgentBank"
     },
     {
+        path: "register",
+        component: Authentification,
+        title: "Register to ArgentBank"
+    },
+    {
         path: "logout",
         component: Authentification,
         title: "Logout from ArgentBank"

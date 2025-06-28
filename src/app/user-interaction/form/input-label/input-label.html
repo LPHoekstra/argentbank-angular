@@ -1,0 +1,12 @@
+<div class="input-wrapper">
+    <label class="input-wrapper__label" [htmlFor]="inputId">{{ labelText }}</label>
+    <input 
+        class="input-wrapper__input"
+        [type]="inputType"
+        [id]="inputId"
+        [autocomplete]="inputAutoComplete"
+        [placeholder]="placeholder()"
+        (change)="onChange()"
+        [disabled]="disabled()"
+    />
+</div>
