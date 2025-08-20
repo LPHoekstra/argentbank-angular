@@ -6,6 +6,7 @@
         [id]="inputId"
         [autocomplete]="inputAutoComplete"
         [placeholder]="placeholder()"
+        [(ngModel)]="inputValue"
         (change)="onChange()"
         [disabled]="disabled()"
     />

@@ -1,3 +1,5 @@
-<ab-input-label type="email" />
-<ab-input-label type="password" />
-<ab-button text="Sign in">
+<form>
+    <ab-input-label type="email" (inputValueEvent)="setEmail($event)" />
+    <ab-input-label type="password" (inputValueEvent)="setPassword($event)" />
+    <ab-button text="Sign in" />
+</form>

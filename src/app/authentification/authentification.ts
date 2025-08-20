@@ -2,9 +2,10 @@ import { Component } from "@angular/core";
 import { Login } from "./login/login";
 import { Router, RouterLink } from "@angular/router";
 import { Logout } from "./logout/logout";
+import { Register } from "./register/register";
 
 @Component({
-    imports: [Login, RouterLink, Logout],
+    imports: [Login, RouterLink, Logout, Register],
     selector: "ab-authentification",
     templateUrl: "./authentification.html",
     styleUrl: "./authentification.scss"
@@ -19,8 +20,8 @@ export class Authentification {
         this.title = this.setTitle();
     }
 
-    isOnLoginPage() {
-        if (this.url === "/login") {
+    isOnPage(url: string) {
+        if (this.url === url) {
             return true;
         }
 
@@ -28,7 +29,7 @@ export class Authentification {
     }
 
     setTitle() {
-        if (this.isOnLoginPage()) {
+        if (this.isOnPage("/login")) {
             return "Sign In";
         }
 

@@ -1,9 +1,11 @@
-import { Component, input } from "@angular/core";
+import { Component, input, output } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 @Component({
     selector: "ab-input-label",
     templateUrl: "./input-label.html",
-    styleUrl: "./input-label.scss"
+    styleUrl: "./input-label.scss",
+    imports: [FormsModule]
 })
 
 export class InputLabel {
@@ -12,18 +14,22 @@ export class InputLabel {
     protected inputId: string = "";
     protected inputAutoComplete: string = "";
 
+    protected inputValue = "";
+    inputValueEvent = output<string>();
+
     public type = input.required<types>()
     public disabled = input<boolean>(false)
     public placeholder = input<string>("")
 
     ngOnInit() {
-        this.setValueInputs(inputs[this.type()]);
+        this.setInputs(inputs[this.type()]);
     }
 
     onChange() {
+        this.inputValueEvent.emit(this.inputValue);
     }
 
-    setValueInputs(inputs: inputs) {
+    setInputs(inputs: inputs) {
         this.labelText = inputs.label;
         this.inputType = inputs.type;
         this.inputId = inputs.id;
