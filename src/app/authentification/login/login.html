@@ -1,5 +1,5 @@
-<form>
-    <ab-input-label type="email" (inputValueEvent)="setEmail($event)" />
-    <ab-input-label type="password" (inputValueEvent)="setPassword($event)" />
+<form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+    <ab-input-label type="email" [formGroup]="loginForm" />
+    <ab-input-label type="password" [formGroup]="loginForm" />
     <ab-button text="Sign in" />
 </form>

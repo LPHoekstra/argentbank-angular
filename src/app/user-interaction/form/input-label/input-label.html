@@ -1,4 +1,4 @@
-<div class="input-wrapper">
+<div class="input-wrapper" [formGroup]="formGroup()">
     <label class="input-wrapper__label" [htmlFor]="inputId">{{ labelText }}</label>
     <input 
         class="input-wrapper__input"
@@ -6,8 +6,6 @@
         [id]="inputId"
         [autocomplete]="inputAutoComplete"
         [placeholder]="placeholder()"
-        [(ngModel)]="inputValue"
-        (change)="onChange()"
-        [disabled]="disabled()"
+        [formControlName]="inputId"
     />
 </div>

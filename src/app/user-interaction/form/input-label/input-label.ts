@@ -1,32 +1,25 @@
-import { Component, input, output } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { Component, input } from "@angular/core";
+import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
     selector: "ab-input-label",
     templateUrl: "./input-label.html",
     styleUrl: "./input-label.scss",
-    imports: [FormsModule]
+    imports: [FormsModule, ReactiveFormsModule]
 })
 
 export class InputLabel {
+    public type = input.required<types>();
+    public formGroup = input.required<FormGroup>();
+    public placeholder = input<string>("");
+
     protected labelText: string = "";
     protected inputType: string = "";
     protected inputId: string = "";
     protected inputAutoComplete: string = "";
 
-    protected inputValue = "";
-    inputValueEvent = output<string>();
-
-    public type = input.required<types>()
-    public disabled = input<boolean>(false)
-    public placeholder = input<string>("")
-
     ngOnInit() {
         this.setInputs(inputs[this.type()]);
-    }
-
-    onChange() {
-        this.inputValueEvent.emit(this.inputValue);
     }
 
     setInputs(inputs: inputs) {
