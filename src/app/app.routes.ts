@@ -1,7 +1,13 @@
 import { Routes } from '@angular/router';
 import { Authentification } from './authentification/authentification';
+import { Home } from './home/home';
 
 export const routes: Routes = [
+    {
+        path: "",
+        component: Home,
+        title: "ArgentBank"
+    },
     {
         path: "login",
         component: Authentification,
