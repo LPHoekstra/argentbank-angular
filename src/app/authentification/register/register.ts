@@ -5,20 +5,24 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { UserService } from "../../userService/user-service";
 
 @Component({
-    selector: "ab-login",
-    templateUrl: "./login.html",
+    selector: "ab-register",
+    templateUrl: "./register.html",
     imports: [InputLabel, Button, ReactiveFormsModule]
 })
 
-export class Login {
-    loginForm = new FormGroup({
+export class Register {
+    registerForm = new FormGroup({
         email: new FormControl(""),
-        password: new FormControl("")
+        password: new FormControl(""),
+        firstName: new FormControl(""),
+        lastName: new FormControl(""),
+        userName: new FormControl("")
     })
 
-    private userService = inject(UserService);
+    userService = inject(UserService)
 
     handleSubmit() {
-        this.userService.login(this.loginForm.value)
+        // this.userService.register(this.registerForm.value)
+        console.log(this.registerForm.value)
     }
 }
