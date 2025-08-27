@@ -1,7 +1,7 @@
 <div class="input-wrapper" [formGroup]="formGroup()">
     <label class="input-wrapper__label" [htmlFor]="inputId">{{ labelText }}</label>
     <input 
-        class="input-wrapper__input"
+        [class]="{'input-wrapper__input': true, 'input-wrapper__input--invalid': isInvalid()}"
         [type]="inputType"
         [id]="inputId"
         [autocomplete]="inputAutoComplete"

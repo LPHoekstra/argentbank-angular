@@ -1,19 +1,18 @@
 import { Component, input } from "@angular/core";
+import { Loader } from "../../loader/loader";
 
 @Component({
     selector: "ab-button",
     templateUrl: "./button.html",
-    styleUrl: "./button.scss"
+    styleUrl: "./button.scss",
+    imports: [Loader]
 })
 
+// TODO can add aditionnal class in input
 export class Button {
     public text = input.required<string>();
     public type = input<butttonType>("submit");
-    // can passed aditionnal class in input
-
-    onClick() {
-    }
-
+    public isLoading = input<boolean>(false);
 }
 
 type butttonType = "submit" | "button" | "reset";

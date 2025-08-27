@@ -12,6 +12,7 @@ export class InputLabel {
     public type = input.required<types>();
     public formGroup = input.required<FormGroup>();
     public placeholder = input<string>("");
+    public isInvalid = input<boolean>(false);
 
     protected labelText: string = "";
     protected inputType: string = "";

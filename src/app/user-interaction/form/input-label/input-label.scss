@@ -1,3 +1,5 @@
+@use "../../../../styles/variables.scss" as *;
+
 .input-wrapper {
     display: flex;
     flex-direction: column;
@@ -11,5 +13,9 @@
     &__input {
         padding: 5px;
         font-size: 1.2rem;
+
+        &--invalid {
+            border: solid 2px $errorColor;
+        }
     }
 }

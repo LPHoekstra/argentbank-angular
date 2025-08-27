@@ -22,5 +22,9 @@ export const routes: Routes = [
         path: "logout",
         component: Authentification,
         title: "Logout from ArgentBank"
+    },
+    {
+        path: "**",
+        redirectTo: "login"
     }
 ];

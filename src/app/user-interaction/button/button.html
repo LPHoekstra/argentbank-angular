@@ -1,7 +1,10 @@
 <button
     [type]="type()"
     class="button"
-    (onclick)="onClick()"
 >
-    {{ text() }}
+    @if (isLoading()) {
+        <ab-loader />
+    } @else {
+        {{ text() }}
+    }
 </button>

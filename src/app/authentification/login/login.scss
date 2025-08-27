@@ -1,0 +1,11 @@
+@use "../../../styles/variables.scss" as *;
+
+.error-msg {
+    border-radius: 4px;
+    background-color: rgb(238, 221, 221);
+    border: solid 1px $errorColor;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    font-size: 0.875em;
+    display: inline-block;
+}
