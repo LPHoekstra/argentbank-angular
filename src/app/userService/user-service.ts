@@ -3,33 +3,26 @@ import { inject, Injectable } from "@angular/core";
 
 @Injectable({ providedIn: "root" })
 export class UserService {
+    private static readonly BACKENDURL = "http://localhost:3001/api/v1/user/";
     private http = inject(HttpClient);
-    private BackendURL = "http://localhost:3001/api/v1";
 
-    login(loginForm: Object) {
-        this.http.post(this.BackendURL + "/user/login", loginForm, {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).subscribe(res => {
-            console.log(res)
-        });
-        // handle error
+    login(loginForm: LoginRequest) {
+        return this.http.post<ApiResponse<LoginResponse>>(UserService.BACKENDURL + "login", loginForm);
     }
 
     logout() {
-
+        return this.http.delete<ApiResponse>(UserService.BACKENDURL + "logout");
     }
 
-    register() {
-
+    register(registerForm: RegisterRequest) {
+        return this.http.post<ApiResponse>(UserService.BACKENDURL + "signup", registerForm);
     }
 
     getProfile() {
-
+        return this.http.get<ApiResponse<GetProfileResponse>>(UserService.BACKENDURL + "profile");
     }
 
-    putProfile() {
-
+    putProfile(updateProfileForm: UpdateProfileRequest) {
+        return this.http.put<ApiResponse<PutProfileResponse>>(UserService.BACKENDURL + "profile", updateProfileForm);
     }
 }
