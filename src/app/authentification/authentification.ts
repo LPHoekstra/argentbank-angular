@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { Login } from "./login/login";
+import { LoginForm } from "./login/login";
 import { Router, RouterLink } from "@angular/router";
 import { Logout } from "./logout/logout";
-import { Register } from "./register/register";
+import { RegisterForm } from "./register/register";
 
 @Component({
-    imports: [Login, RouterLink, Logout, Register],
+    imports: [LoginForm, RouterLink, Logout, RegisterForm],
     selector: "ab-authentification",
     templateUrl: "./authentification.html",
     styleUrl: "./authentification.scss"

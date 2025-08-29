@@ -4,10 +4,10 @@
     <h1>{{this.title}}</h1>
     <!-- render here the login or logout or register component -->
     @if (isOnPage("/login")) {
-      <ab-login />
+      <ab-login-form />
       <a class=auth__link routerLink="/register">Sign Up</a>
     } @else if (isOnPage("/register")) {
-      <ab-register />
+      <ab-register-form />
     } @else if (isOnPage("/logout")) {  
       <ab-logout />
     }

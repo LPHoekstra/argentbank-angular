@@ -4,15 +4,16 @@ import { Button } from "../../user-interaction/button/button";
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { UserService } from "../../userService/user-service";
 import { Router } from "@angular/router";
+import { BaseForm } from "../../user-interaction/form/base-form";
 
 @Component({
-    selector: "ab-login",
+    selector: "ab-login-form",
     templateUrl: "./login.html",
     styleUrl: "./login.scss",
     imports: [InputLabel, Button, ReactiveFormsModule]
 })
 
-export class Login {
+export class LoginForm extends BaseForm {
     private userService = inject(UserService);
     private router = inject(Router);
 
@@ -24,13 +25,10 @@ export class Login {
         password: new FormControl("", Validators.required)
     })
 
-    protected isLoading: boolean = false;
-    protected error: string = "";
     protected isEmailInvalid: boolean = false;
     protected isPasswordInvalid: boolean = false;
 
-    handleSubmit() {
-
+    protected override onSubmit() {
         if (!this.isFieldsValid()) {
             return;
         };
@@ -57,7 +55,7 @@ export class Login {
         });
     }
 
-    isFieldsValid(): boolean {
+    protected override isFieldsValid(): boolean {
         this.isEmailInvalid = false;
         this.isPasswordInvalid = false;
 

@@ -5,12 +5,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { UserService } from "../../userService/user-service";
 
 @Component({
-    selector: "ab-register",
+    selector: "ab-register-form",
     templateUrl: "./register.html",
     imports: [InputLabel, Button, ReactiveFormsModule]
 })
 
-export class Register {
+export class RegisterForm {
     registerForm = new FormGroup({
         email: new FormControl(""),
         password: new FormControl(""),
