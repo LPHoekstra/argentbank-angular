@@ -1,0 +1,11 @@
+<form [formGroup]="formGrp" (ngSubmit)="handleSubmit()">
+    <ab-input-label type="username" [formGroup]="formGrp"/>
+    <ab-input-label type="firstname" [formGroup]="formGrp"/>
+    <ab-input-label type="lastname" [formGroup]="formGrp"/>
+    <ab-input-label type="email" [formGroup]="formGrp"/>
+    <ab-input-label type="password" [formGroup]="formGrp"/>
+    <ab-button text="Sign Up" />
+    @if (error) {
+        <span class="error-msg">{{ error }}</span>
+    }
+</form>

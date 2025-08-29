@@ -1,8 +1,0 @@
-<form [formGroup]="loginFormGrp" (ngSubmit)="handleSubmit()">
-    <ab-input-label type="email" [formGroup]="loginFormGrp" [isInvalid]="isEmailInvalid" />
-    <ab-input-label type="password" [formGroup]="loginFormGrp" [isInvalid]="isPasswordInvalid" />
-    <ab-button text="Sign in" [isLoading]="isLoading"/>
-    @if (error) {
-        <span class="error-msg">{{ error }}</span>
-    }
-</form>

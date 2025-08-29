@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { LoginForm } from "./login/login";
 import { Router, RouterLink } from "@angular/router";
 import { Logout } from "./logout/logout";
-import { RegisterForm } from "./register/register";
+import { RegisterForm } from "../user-interaction/form/register-form/register-form";
+import { LoginForm } from "../user-interaction/form/login-form/login-form";
 
 @Component({
     imports: [LoginForm, RouterLink, Logout, RegisterForm],
