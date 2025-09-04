@@ -1,10 +1,8 @@
-import { Component } from "@angular/core";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Directive } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
-@Component({
-    selector: "ab-base-form",
-    templateUrl: "./base-form.html"
-})
+@Directive()
 export abstract class BaseForm {
     protected formGrp!: FormGroup;
     protected error: string = "";
@@ -14,17 +12,18 @@ export abstract class BaseForm {
         this.formGrp = this.buildForm();
     }
 
-    handleSubmit() {
+    onSubmit() {
         this.error = "";
 
         if (this.isFieldsValid()) {
             this.isLoading = true;
-            this.onSubmit();
+            this.handleSubmit();
         }
     }
 
-    // TODO give a type to the param
-    protected handleErrorResponse(err: any) {
+    protected handleErrorResponse(err: HttpErrorResponse) {
+        this.error = "Erreur lors de la requête";
+
         if (err.status === 400) {
             this.error = "Champ invalide";
         }
@@ -43,7 +42,7 @@ export abstract class BaseForm {
 
     protected abstract buildForm(): FormGroup;
 
-    protected abstract onSubmit(): void;
+    protected abstract handleSubmit(): void;
 
     protected abstract isFieldsValid(): boolean;
 }

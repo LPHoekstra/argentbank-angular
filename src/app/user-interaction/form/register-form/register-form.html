@@ -1,10 +1,10 @@
-<form [formGroup]="formGrp" (ngSubmit)="handleSubmit()">
-    <ab-input-label type="username" [formGroup]="formGrp"/>
-    <ab-input-label type="firstname" [formGroup]="formGrp"/>
-    <ab-input-label type="lastname" [formGroup]="formGrp"/>
-    <ab-input-label type="email" [formGroup]="formGrp"/>
-    <ab-input-label type="password" [formGroup]="formGrp"/>
-    <ab-button text="Sign Up" />
+<form [formGroup]="formGrp" (ngSubmit)="onSubmit()">
+    <ab-input-label type="username" [formGroup]="formGrp" [isInvalid]="isUserNameInvalid" />
+    <ab-input-label type="firstname" [formGroup]="formGrp" [isInvalid]="isFirstNameInvalid" />
+    <ab-input-label type="lastname" [formGroup]="formGrp" [isInvalid]="isLastNameInvalid" />
+    <ab-input-label type="email" [formGroup]="formGrp" [isInvalid]="isEmailInvalid" />
+    <ab-input-label type="password" [formGroup]="formGrp" [isInvalid]="isPasswordInvalid" />
+    <ab-button text="Sign Up" [isLoading]="isLoading" />
     @if (error) {
         <span class="error-msg">{{ error }}</span>
     }

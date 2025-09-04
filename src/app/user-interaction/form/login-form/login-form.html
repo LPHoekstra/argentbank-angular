@@ -1,4 +1,4 @@
-<form [formGroup]="formGrp" (ngSubmit)="handleSubmit()">
+<form [formGroup]="formGrp" (ngSubmit)="onSubmit()">
     <ab-input-label type="email" [formGroup]="formGrp" [isInvalid]="isEmailInvalid" />
     <ab-input-label type="password" [formGroup]="formGrp" [isInvalid]="isPasswordInvalid" />
     <ab-button text="Sign in" [isLoading]="isLoading"/>
