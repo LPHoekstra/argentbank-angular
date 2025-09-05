@@ -1,0 +1,17 @@
+<main class="main bg-dark">
+    <div class=header>
+        <h1>Welcome back<br />{{ userFirstName }} {{ userLastName }}!</h1>
+        @if (isFormOpen) {
+            <!-- form to edit the user name -->
+        } @else {
+            <button class="button editButton"> 
+                    Edit Name
+            </button>
+        }
+        @if (successMsg) {
+            <span>User profile updated</span>
+        }
+    </div>
+    <h2 class="sr-only">Accounts</h2>
+    
+</main>

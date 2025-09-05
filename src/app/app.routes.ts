@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
-import { Authentification } from './authentification/authentification';
-import { Home } from './home/home';
+import { Authentification } from './features/authentification/authentification.component';
+import { Home } from './features/home/home.component';
+import { Profile } from './features/profile/profile.component';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {
@@ -22,6 +24,12 @@ export const routes: Routes = [
         path: "logout",
         component: Authentification,
         title: "Logout from ArgentBank"
+    },
+    {
+        path: "profile",
+        component: Profile,
+        title: "Profile",
+        canActivate: [authGuard]
     },
     {
         path: "**",

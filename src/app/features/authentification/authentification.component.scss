@@ -1,0 +1,29 @@
+@use "../../../styles/variables.scss" as *;
+
+.auth {
+    // find a solution so the component take max space he can
+    height: 80vh;
+    padding-top: 3rem;
+
+    &__content {
+        box-sizing: border-box;
+        background-color: white;
+        width: 300px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    &__icon {
+        font-size: 5rem;
+    }
+
+    &__link {
+        display: inline-block;
+        margin-top: 1em;
+        color: $textColor;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
