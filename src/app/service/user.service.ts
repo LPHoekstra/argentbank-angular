@@ -6,6 +6,20 @@ export class UserService {
     private static readonly BACKENDURL = "http://localhost:3001/api/v1/user/";
     private http = inject(HttpClient);
 
+    public id: string | null = null;
+    public email: string | null = null;
+    public userName: string | null = null;
+    public firstName: string | null = null;
+    public lastName: string | null = null;
+
+    public setUserData(body: GetProfileResponse) {
+        this.id = body.id;
+        this.email = body.email;
+        this.userName = body.userName;
+        this.firstName = body.firstName;
+        this.lastName = body.lastName;
+    }
+
     login(loginForm: LoginRequest) {
         return this.http.post<ApiResponse<LoginResponse>>(UserService.BACKENDURL + "login", loginForm);
     }
@@ -19,7 +33,14 @@ export class UserService {
     }
 
     getProfile() {
-        return this.http.get<ApiResponse<GetProfileResponse>>(UserService.BACKENDURL + "profile");
+        return this.http.get<ApiResponse<GetProfileResponse>>(UserService.BACKENDURL + "profile",
+            {
+                headers: {
+                    "Authorization": this.isAuthenticated() ?
+                        "Bearer " + this.token as string : ""
+                }
+            }
+        );
     }
 
     putProfile(updateProfileForm: UpdateProfileRequest) {
@@ -27,7 +48,10 @@ export class UserService {
     }
 
     public isAuthenticated(): boolean {
-        const token = localStorage.getItem("token");
-        return token ? true : false;
+        return this.token ? true : false;
+    }
+
+    get token(): string | null {
+        return localStorage.getItem("token");
     }
 }
