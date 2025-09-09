@@ -1,3 +1,3 @@
-interface UpdateProfileRequest {
+interface PutProfileRequest {
     userName: string
 }

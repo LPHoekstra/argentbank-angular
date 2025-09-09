@@ -1,6 +1,7 @@
 <button
     [type]="type()"
     class="button"
+    (click)="onClick()"
 >
     @if (isLoading()) {
         <ab-loader />

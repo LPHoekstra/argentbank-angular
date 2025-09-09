@@ -1,0 +1,10 @@
+<form [formGroup]="formGrp" (ngSubmit)="onSubmit()" class="form">
+    <ab-input-label type="username" [formGroup]="formGrp" [placeholder]="serviceUserName" [isInvalid]="isUserNameInvalid" />
+    <ab-input-label type="firstname" [formGroup]="formGrp" />
+    <ab-input-label type="lastname" [formGroup]="formGrp" />
+    @if (error) {
+        <span class="error-msg">{{ error }}</span>
+    }
+    <ab-button text="Save" [isLoading]="isLoading" />
+    <ab-button text="Cancel" type="button" (clickEvent)="cancelForm()" />
+</form>

@@ -1,24 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { User } from "../model/user";
 
+// TODO create an interceptor for headers
 @Injectable({ providedIn: "root" })
 export class UserService {
     private static readonly BACKENDURL = "http://localhost:3001/api/v1/user/";
     private http = inject(HttpClient);
 
-    public id: string | null = null;
-    public email: string | null = null;
-    public userName: string | null = null;
-    public firstName: string | null = null;
-    public lastName: string | null = null;
-
-    public setUserData(body: GetProfileResponse) {
-        this.id = body.id;
-        this.email = body.email;
-        this.userName = body.userName;
-        this.firstName = body.firstName;
-        this.lastName = body.lastName;
-    }
+    private user: User | null = null;
 
     login(loginForm: LoginRequest) {
         return this.http.post<ApiResponse<LoginResponse>>(UserService.BACKENDURL + "login", loginForm);
@@ -43,8 +33,15 @@ export class UserService {
         );
     }
 
-    putProfile(updateProfileForm: UpdateProfileRequest) {
-        return this.http.put<ApiResponse<PutProfileResponse>>(UserService.BACKENDURL + "profile", updateProfileForm);
+    putProfile(updateProfileForm: PutProfileRequest) {
+        return this.http.put<ApiResponse<PutProfileResponse>>(UserService.BACKENDURL + "profile", updateProfileForm,
+            {
+                headers: {
+                    "Authorization": this.isAuthenticated() ?
+                        "Bearer " + this.token as string : ""
+                }
+            }
+        );
     }
 
     public isAuthenticated(): boolean {
@@ -53,5 +50,33 @@ export class UserService {
 
     get token(): string | null {
         return localStorage.getItem("token");
+    }
+
+    public setUserData(body: GetProfileResponse) {
+        this.user = body;
+    }
+
+    public get id(): string {
+        return this.user?.id ?? "id";
+    }
+
+    public get email(): string {
+        return this.user?.email ?? "email";
+    }
+
+    public get userName(): string {
+        return this.user?.userName ?? "user name";
+    }
+
+    public set userName(userName: string) {
+        this.user ? this.user.userName = userName : null;
+    }
+
+    public get firstName(): string {
+        return this.user?.firstName ?? "Prénom";
+    }
+
+    public get lastName(): string {
+        return this.user?.lastName ?? "Nom";
     }
 }

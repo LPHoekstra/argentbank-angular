@@ -2,12 +2,12 @@
 
 .header {
   color: #fff;
-  // margin-bottom: 2rem;
-  // margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 .editButton {
-  padding: 10px;
+  padding: 0.625rem;
   margin: 1rem 0;
 }
 
@@ -18,6 +18,13 @@
   margin-top: 1rem;
 
   @include largeScreen {
-        width: 200px;
-    }
+    width: 200px;
+  }
+}
+
+.placeholder-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
