@@ -25,10 +25,7 @@ export class UserService {
     getProfile() {
         return this.http.get<ApiResponse<GetProfileResponse>>(UserService.BACKENDURL + "profile",
             {
-                headers: {
-                    "Authorization": this.isAuthenticated() ?
-                        "Bearer " + this.token as string : ""
-                }
+                withCredentials: true
             }
         );
     }
@@ -36,15 +33,12 @@ export class UserService {
     putProfile(updateProfileForm: PutProfileRequest) {
         return this.http.put<ApiResponse<PutProfileResponse>>(UserService.BACKENDURL + "profile", updateProfileForm,
             {
-                headers: {
-                    "Authorization": this.isAuthenticated() ?
-                        "Bearer " + this.token as string : ""
-                }
+                withCredentials: true
             }
         );
     }
 
-    public isAuthenticated(): boolean {
+    isAuthenticated(): boolean {
         return this.token ? true : false;
     }
 
@@ -52,31 +46,31 @@ export class UserService {
         return localStorage.getItem("token");
     }
 
-    public setUserData(body: GetProfileResponse) {
+    setUserData(body: GetProfileResponse) {
         this.user = body;
     }
 
-    public get id(): string {
+    get id(): string {
         return this.user?.id ?? "id";
     }
 
-    public get email(): string {
+    get email(): string {
         return this.user?.email ?? "email";
     }
 
-    public get userName(): string {
+    get userName(): string {
         return this.user?.userName ?? "user name";
     }
 
-    public set userName(userName: string) {
+    set userName(userName: string) {
         this.user ? this.user.userName = userName : null;
     }
 
-    public get firstName(): string {
+    get firstName(): string {
         return this.user?.firstName ?? "Prénom";
     }
 
-    public get lastName(): string {
+    get lastName(): string {
         return this.user?.lastName ?? "Nom";
     }
 }
