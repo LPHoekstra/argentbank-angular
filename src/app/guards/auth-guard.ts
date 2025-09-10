@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, RedirectCommand, Router } from '@angular/router';
-import { UserService } from '../service/user.service';
+import { AuthService } from '../service/auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const userService = inject(UserService);
+  const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (!userService.isAuthenticated()) {
+  if (!authService.isAuthenticated()) {
     const urlTreeLogin = router.parseUrl("login");
 
     return new RedirectCommand(urlTreeLogin);

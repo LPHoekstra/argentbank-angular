@@ -5,8 +5,8 @@ import { InputLabel } from "../input-label/input-label.component";
 import { Button } from "../../button/button.component";
 import { HttpErrorResponse } from "@angular/common/http";
 import { BaseForm } from "../../../../directive/base-form";
-import { UserService } from "../../../../../service/user.service";
 import { passwordValidator } from "../../../../directive/password-validator.directive";
+import { AuthService } from "../../../../../service/auth.service";
 
 @Component({
     selector: "ab-login-form",
@@ -14,7 +14,7 @@ import { passwordValidator } from "../../../../directive/password-validator.dire
     imports: [InputLabel, Button, ReactiveFormsModule]
 })
 export class LoginForm extends BaseForm {
-    private userService = inject(UserService);
+    private authService = inject(AuthService);
     private router = inject(Router);
 
     protected isEmailInvalid: boolean = false;
@@ -23,7 +23,7 @@ export class LoginForm extends BaseForm {
     protected override handleSubmit() {
         const loginData: LoginRequest = this.formGrp.value as LoginRequest;
 
-        this.userService.login(loginData).subscribe(
+        this.authService.login(loginData).subscribe(
             {
                 next: (value) => {
                     localStorage.setItem("token", value.body.token);

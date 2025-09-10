@@ -1,11 +1,11 @@
-import { HttpEvent, HttpEventType, HttpHandlerFn, HttpRequest } from "@angular/common/http";
+import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { Observable, tap } from "rxjs";
-import { UserService } from "../service/user.service";
+import { Observable } from "rxjs";
+import { AuthService } from "../service/auth.service";
 
 export function credentialsInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
     if (req.withCredentials) {
-        const token = inject(UserService).token;
+        const token = inject(AuthService).token;
 
         if (token) {
             const reqWithHeader: HttpRequest<unknown> = req.clone({

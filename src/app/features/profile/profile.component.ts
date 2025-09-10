@@ -44,7 +44,7 @@ export class Profile {
         this.userService.getProfile().subscribe(
             {
                 next: (value) => {
-                    this.userService.setUserData(value.body);
+                    this.userService.setUser(value.body);
                     this.isDataLoaded = true;
                 },
                 error: (err: HttpErrorResponse) => {

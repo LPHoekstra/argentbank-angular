@@ -13,12 +13,10 @@
             <h1 class="sr-only">Argent Bank</h1>
         </a>
         <div class=main-nav__link-containers>
-            <!-- only if connected -->
             @if (isConnected) {
                 <a class=main-nav__item routerLink="/profile">
                     <i class="fa fa-user-circle"></i>
-                    <!-- dynamic render of the userName -->
-                    {{userName}}
+                    {{ userService.userName }}
                 </a>
             }
             <!-- dynamic routing and content if the user is connected or not -->

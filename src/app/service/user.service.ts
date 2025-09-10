@@ -1,29 +1,24 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { User } from "../model/user";
+import { environment } from "../../environment/environment";
 
-// TODO create an interceptor for headers
 @Injectable({ providedIn: "root" })
 export class UserService {
-    private static readonly BACKENDURL = "http://localhost:3001/api/v1/user/";
+    private static readonly APIURL = `${environment.apiUrl}/user`;
     private http = inject(HttpClient);
 
     private user: User | null = null;
 
-    login(loginForm: LoginRequest) {
-        return this.http.post<ApiResponse<LoginResponse>>(UserService.BACKENDURL + "login", loginForm);
-    }
-
-    logout() {
-        return this.http.delete<ApiResponse>(UserService.BACKENDURL + "logout");
-    }
-
-    register(registerForm: RegisterRequest) {
-        return this.http.post<ApiResponse>(UserService.BACKENDURL + "signup", registerForm);
+    ngOnInit() {
+        const localUser: User | null = this.getLocalUser();
+        if (localUser) {
+            this.user = localUser;
+        }
     }
 
     getProfile() {
-        return this.http.get<ApiResponse<GetProfileResponse>>(UserService.BACKENDURL + "profile",
+        return this.http.get<ApiResponse<GetProfileResponse>>(UserService.APIURL + "/profile",
             {
                 withCredentials: true
             }
@@ -31,23 +26,30 @@ export class UserService {
     }
 
     putProfile(updateProfileForm: PutProfileRequest) {
-        return this.http.put<ApiResponse<PutProfileResponse>>(UserService.BACKENDURL + "profile", updateProfileForm,
+        return this.http.put<ApiResponse<PutProfileResponse>>(UserService.APIURL + "/profile", updateProfileForm,
             {
                 withCredentials: true
             }
         );
     }
 
-    isAuthenticated(): boolean {
-        return this.token ? true : false;
+    private getLocalUser(): User | null {
+        const jsonUser = localStorage.getItem("user");
+
+        if (jsonUser) {
+            return JSON.parse(jsonUser);
+        }
+
+        return null;
     }
 
-    get token(): string | null {
-        return localStorage.getItem("token");
+    private setLocalUser(user: User) {
+        localStorage.setItem("user", JSON.stringify(user));
     }
 
-    setUserData(body: GetProfileResponse) {
-        this.user = body;
+    setUser(user: User) {
+        this.user = user;
+        this.setLocalUser(user);
     }
 
     get id(): string {
@@ -62,8 +64,14 @@ export class UserService {
         return this.user?.userName ?? "user name";
     }
 
+    /**
+     * The user must be initialized when this called, otherwise it do nothing
+     */
     set userName(userName: string) {
-        this.user ? this.user.userName = userName : null;
+        if (this.user) {
+            this.user.userName = userName;
+            this.setLocalUser(this.user);
+        }
     }
 
     get firstName(): string {

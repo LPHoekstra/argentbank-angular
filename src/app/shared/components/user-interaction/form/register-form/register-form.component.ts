@@ -4,9 +4,9 @@ import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Button } from "../../button/button.component";
 import { InputLabel } from "../input-label/input-label.component";
-import { UserService } from "../../../../../service/user.service";
 import { BaseForm } from "../../../../directive/base-form";
 import { passwordValidator } from "../../../../directive/password-validator.directive";
+import { AuthService } from "../../../../../service/auth.service";
 
 
 // TODO improve the field validation and set an error msg with better precision about the problem
@@ -16,7 +16,7 @@ import { passwordValidator } from "../../../../directive/password-validator.dire
     imports: [InputLabel, Button, ReactiveFormsModule]
 })
 export class RegisterForm extends BaseForm {
-    userService = inject(UserService);
+    authService = inject(AuthService);
     router = inject(Router);
 
     protected isEmailInvalid: boolean = false;
@@ -34,7 +34,7 @@ export class RegisterForm extends BaseForm {
             userName: this.formGrp.value.username as string
         }
 
-        this.userService.register(registerData).subscribe({
+        this.authService.register(registerData).subscribe({
             error: (err: HttpErrorResponse) => {
                 this.handleErrorResponse(err);
             },

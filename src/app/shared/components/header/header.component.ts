@@ -1,6 +1,8 @@
 import { NgOptimizedImage } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { UserService } from "../../../service/user.service";
+import { AuthService } from "../../../service/auth.service";
 
 @Component({
     imports: [NgOptimizedImage, RouterLink],
@@ -10,13 +12,10 @@ import { RouterLink } from "@angular/router";
 })
 
 export class Header {
-    // TODO get somewhere the connection status
-    protected isConnected: boolean = false;
-    protected userName: string | null;
+    userService = inject(UserService);
+    authService = inject(AuthService);
 
-    constructor() {
-        this.userName = localStorage.getItem("userName")
-    }
+    protected isConnected: boolean = this.authService.isAuthenticated();
 
     getConnectionRedirection() {
         if (this.isConnected) {
