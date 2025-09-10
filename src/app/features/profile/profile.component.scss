@@ -1,24 +1,17 @@
 @use "../../../styles/mixin.scss" as *;
 
-.header {
-  color: #fff;
-  padding-top: 1rem;
+.main {
+  padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-.editButton {
-  padding: 0.625rem;
-  margin: 1rem 0;
-}
+.header {
+  color: #fff;
+  padding-bottom: 2rem;
 
-.transactionButton {
-  display: block;
-  width: 100%;
-  font-size: 1.1rem;
-  margin-top: 1rem;
-
-  @include largeScreen {
-    width: 200px;
+  &__edit-button {
+    padding: 0.625rem;
+    margin: 1rem 0;
   }
 }
 

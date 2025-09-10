@@ -3,15 +3,18 @@
         <div class=header>
             <h1>Welcome back<br />{{ userService.firstName }} {{ userService.lastName }}!</h1>
             @if (isFormOpen) {
-                <ab-editProfileForm class="editForm" (isProfileUpdatedEvent)="handleForm($event)" />
+                <ab-editProfileForm (isProfileUpdatedEvent)="handleForm($event)" />
             } @else {
-                <button class="button editButton" (click)="openForm()">Edit Name</button>
+                <button class="button header__edit-button" (click)="openForm()">Edit Name</button>
             }
             @if (isProfileUpdated) {
                 <span>User profile updated</span>
             }
         </div>
         <h2 class="sr-only">Accounts</h2>   
+        @for (data of bankAccountDataMock; track $index) {
+            <ab-bank-account-preview [title]="data.title" [amount]="data.amount" [description]="data.description" />
+        }
     } @placeholder {
         <div class="placeholder-container">
             @if (error) {
