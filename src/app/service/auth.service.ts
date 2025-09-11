@@ -43,7 +43,7 @@ export class AuthService {
         return this.http.post<ApiResponse>(AuthService.APIURL + "/signup", registerForm);
     }
 
-    private clearSession() {
+    clearSession() {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         this.isAuthenticated = false;

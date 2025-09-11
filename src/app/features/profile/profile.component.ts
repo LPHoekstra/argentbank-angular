@@ -51,11 +51,6 @@ export class Profile {
                     // TODO need a refactoring to handle different error
                     console.error(err)
                     this.error = "Erreur lors de la récupération des informations";
-                    if (err.status === 401) {
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("user");
-                        this.router.navigate(["/login"]);
-                    }
                 },
             }
         )

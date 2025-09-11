@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { credentialsInterceptor } from './interceptor/credentials-interceptor';
+import { notAuthorizedInterceptor } from './interceptor/not-authorized-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(
       withFetch(),
-      withInterceptors([credentialsInterceptor])
+      withInterceptors([credentialsInterceptor, notAuthorizedInterceptor])
     )
   ]
 };
