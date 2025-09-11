@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { Logout } from "./logout/logout.component";
+import { Logout } from "../logout/logout.component";
 import { LoginForm } from "../../shared/components/user-interaction/form/login-form/login-form.component";
 import { RegisterForm } from "../../shared/components/user-interaction/form/register-form/register-form.component";
 
@@ -21,18 +21,10 @@ export class Authentification {
     }
 
     isOnPage(url: string) {
-        if (this.url === url) {
-            return true;
-        }
-
-        return false;
+        return this.url === url ? true : false;
     }
 
     setTitle() {
-        if (this.isOnPage("/login")) {
-            return "Sign In";
-        }
-
-        return "Sign Up";
+        return this.isOnPage("/login") ? "Sign In" : "Sign Up";
     }
 }

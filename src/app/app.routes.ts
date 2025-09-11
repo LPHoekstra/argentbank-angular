@@ -3,6 +3,7 @@ import { Authentification } from './features/authentification/authentification.c
 import { Home } from './features/home/home.component';
 import { Profile } from './features/profile/profile.component';
 import { authGuard } from './guards/auth-guard';
+import { Logout } from './features/logout/logout.component';
 
 export const routes: Routes = [
     {
@@ -22,7 +23,7 @@ export const routes: Routes = [
     },
     {
         path: "logout",
-        component: Authentification,
+        component: Logout,
         title: "Logout from ArgentBank"
     },
     {
