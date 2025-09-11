@@ -10,7 +10,7 @@ export class UserService {
 
     private user: User | null = null;
 
-    ngOnInit() {
+    constructor() {
         const localUser: User | null = this.getLocalUser();
         if (localUser) {
             this.user = localUser;

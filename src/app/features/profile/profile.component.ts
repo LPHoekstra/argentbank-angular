@@ -52,8 +52,9 @@ export class Profile {
                     console.error(err)
                     this.error = "Erreur lors de la récupération des informations";
                     if (err.status === 401) {
-                        localStorage.removeItem("token")
-                        this.router.navigate(["/login"])
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("user");
+                        this.router.navigate(["/login"]);
                     }
                 },
             }

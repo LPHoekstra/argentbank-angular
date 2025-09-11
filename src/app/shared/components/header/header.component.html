@@ -13,15 +13,14 @@
             <h1 class="sr-only">Argent Bank</h1>
         </a>
         <div class=main-nav__link-containers>
-            @if (isConnected) {
+            @if (authService.isAuthenticated) {
                 <a class=main-nav__item routerLink="/profile">
                     <i class="fa fa-user-circle"></i>
                     {{ userService.userName }}
                 </a>
             }
-            <!-- dynamic routing and content if the user is connected or not -->
-            <a class=main-nav__item routerLink={{getConnectionRedirection()}}>
-                {{getConnectionStatus()}}
+            <a class=main-nav__item routerLink={{authRoute}}>
+                {{ authText }}
             </a>
         </div>
     </nav>

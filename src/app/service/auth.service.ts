@@ -7,6 +7,14 @@ export class AuthService {
     private static readonly APIURL = `${environment.apiUrl}/user`;
     http = inject(HttpClient);
 
+    public isAuthenticated: boolean = false;
+
+    constructor() {
+        if (this.token) {
+            this.isAuthenticated = true;
+        }
+    }
+
     login(loginForm: LoginRequest) {
         return this.http.post<ApiResponse<LoginResponse>>(AuthService.APIURL + "/login", loginForm);
     }
@@ -23,11 +31,12 @@ export class AuthService {
         return this.http.post<ApiResponse>(AuthService.APIURL + "/signup", registerForm);
     }
 
-    isAuthenticated(): boolean {
-        return this.token ? true : false;
-    }
-
     get token(): string | null {
         return localStorage.getItem("token");
+    }
+
+    set token(token: string) {
+        localStorage.setItem("token", token);
+        this.isAuthenticated = true;
     }
 }

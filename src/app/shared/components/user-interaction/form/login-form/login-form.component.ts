@@ -26,7 +26,7 @@ export class LoginForm extends BaseForm {
         this.authService.login(loginData).subscribe(
             {
                 next: (value) => {
-                    localStorage.setItem("token", value.body.token);
+                    this.authService.token = value.body.token;
                 },
                 error: (err: HttpErrorResponse) => {
                     this.handleErrorResponse(err);

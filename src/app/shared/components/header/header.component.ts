@@ -15,21 +15,11 @@ export class Header {
     userService = inject(UserService);
     authService = inject(AuthService);
 
-    protected isConnected: boolean = this.authService.isAuthenticated();
-
-    getConnectionRedirection() {
-        if (this.isConnected) {
-            return "/logout";
-        }
-
-        return "/login";
+    get authRoute() {
+        return this.authService.isAuthenticated ? "/logout" : "/login";
     }
 
-    getConnectionStatus() {
-        if (this.isConnected) {
-            return "Logout";
-        }
-
-        return "Sign in";
+    get authText() {
+        return this.authService.isAuthenticated ? "Logout" : "Sign in";
     }
 }
